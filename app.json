@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "sdkVersion": "27.0.0",
+    "name": "ActivityFeedShowcase",
+    "slug": "react-native-activity-feed-showcase",
+    "splash": {
+      "image": "./images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    }
+  }
+}

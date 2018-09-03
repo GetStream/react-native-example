@@ -1,8 +1,11 @@
 {
-  "presets": ["babel-preset-expo"],
+  "presets": ["flow", "react-native"],
   "env": {
     "development": {
-      "plugins": ["transform-react-jsx-source"]
+      "plugins": [
+        "transform-react-jsx-source",
+        "transform-inline-environment-variables"
+      ]
     }
   }
 }
