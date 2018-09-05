@@ -1,0 +1,10 @@
+**/*{.,-}min.js
+/lib/
+/example/lib/
+/native-example/lib/
+/native-package/lib/
+/expo-package/lib/
+/flow-typed/
+/docs/
+/.git/
+**/*.sh

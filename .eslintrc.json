@@ -1,0 +1,42 @@
+{
+    "plugins": [
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:flowtype/recommended",
+        "plugin:react/recommended",
+        "plugin:jest/recommended"
+    ],
+    "rules": {
+        "no-console": 0,
+        "no-mixed-spaces-and-tabs": 1,
+        "comma-dangle": 0,
+        "no-unused-vars": 1,
+        "react/prop-types": 0,
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "semi": [
+            1,
+            "always"
+        ]
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "commonjs": true,
+        "mocha": true
+    },
+    "globals": {
+        "process": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2018,
+        "ecmaFeatures" : {
+            "modules": true
+        }
+    }
+}
