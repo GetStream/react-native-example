@@ -5,10 +5,10 @@ import { StatusBar, Image, View } from 'react-native';
 import Notification from '../components/Notification';
 import Follow from '../components/Notifications/Follow';
 import { NotificationFeed } from 'expo-activity-feed';
-// $FlowFixMe https://github.com/facebook/flow/issues/345
+
 import CategoriesIcon from '../images/icons/categories.png';
-// $FlowFixMe https://github.com/facebook/flow/issues/345
 import PostIcon from '../images/icons/post.png';
+import ReplyIcon from '../images/icons/reply.png';
 
 import { Activity, LikeButton, ReactionIcon } from 'expo-activity-feed';
 
@@ -16,7 +16,7 @@ import type { NavigationScreen } from 'expo-activity-feed';
 import type { NavigationEventSubscription } from 'react-navigation';
 
 type Props = {|
-  navigation?: NavigationScreen,
+  navigation: NavigationScreen,
 |};
 
 export default class NotificationScreen extends React.Component<Props> {
@@ -66,7 +66,7 @@ export default class NotificationScreen extends React.Component<Props> {
               <LikeButton activity={activity} {...props} />
 
               <ReactionIcon
-                icon={require('../images/icons/reply.png')}
+                icon={ReplyIcon}
                 labelSingle="comment"
                 labelPlural="comments"
                 counts={activityGroup.activities.reaction_counts}

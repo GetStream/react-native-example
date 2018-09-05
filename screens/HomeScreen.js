@@ -9,16 +9,16 @@ import {
   LikeButton,
   ReactionIcon,
 } from 'expo-activity-feed';
-import type { UserResponse } from '../types';
+import type { UserResponse, ActivityData } from '../types';
 
-// $FlowFixMe https://github.com/facebook/flow/issues/345
 import PostIcon from '../images/icons/post.png';
+import ReplyIcon from '../images/icons/reply.png';
 
 import type { NavigationScreen } from 'expo-activity-feed';
 import type { NavigationEventSubscription } from 'react-navigation';
 
 type Props = {|
-  navigation?: NavigationScreen,
+  navigation: NavigationScreen,
 |};
 
 class HomeScreen extends React.Component<Props> {
@@ -57,7 +57,7 @@ class HomeScreen extends React.Component<Props> {
     });
   }
 
-  _onPressActivity = (activity) => {
+  _onPressActivity = (activity: ActivityData) => {
     this.props.navigation.navigate('SinglePost', {
       activity: activity,
     });
@@ -83,7 +83,7 @@ class HomeScreen extends React.Component<Props> {
                   <LikeButton {...props} />
 
                   <ReactionIcon
-                    icon={require('../images/icons/reply.png')}
+                    icon={ReplyIcon}
                     labelSingle="comment"
                     labelPlural="comments"
                     counts={props.activity.reaction_counts}

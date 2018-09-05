@@ -3,7 +3,6 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import { Avatar } from 'expo-activity-feed';
-// $FlowFixMe https://github.com/facebook/flow/issues/345
 import FollowersIcon from '../../images/icons/followers.png';
 
 import type { NotificationActivities } from '../../types';

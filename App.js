@@ -59,7 +59,9 @@ const TabNavigator = createBottomTabNavigator(
           return <Icon name="search" />;
         } else if (routeName === 'Notifications') {
           return (
-            <IconBadge showNumber mainElement={<Icon name="notifications" />} />
+            <IconBadge showNumber>
+              <Icon name="notifications" />
+            </IconBadge>
           );
         } else if (routeName === 'Profile') {
           return (

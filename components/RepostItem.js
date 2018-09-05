@@ -4,9 +4,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Avatar, humanizeTimestamp } from 'expo-activity-feed';
 
-// $FlowFixMe https://github.com/facebook/flow/issues/345
 import HeartIconOutline from '../images/icons/heart-outline.png';
-// $FlowFixMe https://github.com/facebook/flow/issues/345
 import RepostIcon from '../images/icons/repost.png';
 
 import type { Repost } from '../types';

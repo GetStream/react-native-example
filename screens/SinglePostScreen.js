@@ -18,8 +18,10 @@ import RepostList from '../components/RepostList';
 import type { UserResponse } from '../types';
 import type { NavigationScreen } from 'expo-activity-feed';
 
+import ReplyIcon from '../images/icons/reply.png';
+
 type Props = {|
-  navigation?: NavigationScreen,
+  navigation: NavigationScreen,
 |};
 
 export default class SinglePostScreen extends React.Component<Props> {
@@ -57,7 +59,7 @@ export default class SinglePostScreen extends React.Component<Props> {
                     <LikeButton {...props} />
 
                     <ReactionIcon
-                      icon={require('../images/icons/reply.png')}
+                      icon={ReplyIcon}
                       labelSingle="comment"
                       labelPlural="comments"
                       counts={props.activity.reaction_counts}

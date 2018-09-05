@@ -2,7 +2,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { Card } from 'expo-activity-feed';
 import type { ActivityData } from '../types';
 
 type Props = {
@@ -34,9 +33,6 @@ const AttachedActivity = ({ activity }: Props) => {
     );
   }
 
-  if (activity.verb === 'link') {
-    return <Card item={activity} />;
-  }
   return null;
 };
 
