@@ -8,13 +8,26 @@ npm install
 cp .env.example .env
 ```
 
-Get your Stream API credentials from <TODO: Link to onboarding page here>.
+Get your Stream API credentials from **<TODO: Link to onboarding page here>**.
 
 Open the `.env` file in your favorite editor. And fill in the credentials.
 
 ```
 npm run init-data
 ```
+
+Copy the line this script outputs and put it in your `.env` file.
+
+```
+npm run
+```
+
+Then to see the app on your phone or emulator, follow the instructions that are
+shown in the terminal. And you should have an app that looks something like
+this:
+
+
+**TODO: Screenshot**
 
 
 # See below for the instructions left by `create-react-native-app`
