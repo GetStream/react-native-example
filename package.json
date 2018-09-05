@@ -43,6 +43,7 @@
     "prettier": "prettier --list-different '**/*.{js,ts}'",
     "lint": "prettier --list-different '**/*.{js,ts}' && eslint '**/*.js' --max-warnings 0 && flow",
     "lint-fix": "prettier --write '**/*.{js,ts}' && eslint --fix '**/*.js'",
+    "init-data": "babel-node scripts/initData.js",
     "test": "jest"
   },
   "jest": {
