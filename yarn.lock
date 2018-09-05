@@ -1265,6 +1265,12 @@ babel-plugin-check-es2015-constants@^6.22.0, babel-plugin-check-es2015-constants
   dependencies:
     babel-runtime "^6.22.0"
 
+babel-plugin-dotenv@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-dotenv/-/babel-plugin-dotenv-0.1.1.tgz#9c8faea67a7c034fe7e94099187ab2e7573400bc"
+  dependencies:
+    dotenv "^2.0.0"
+
 babel-plugin-external-helpers@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-external-helpers/-/babel-plugin-external-helpers-6.22.0.tgz#2285f48b02bd5dede85175caf8c62e86adccefa1"
@@ -2770,6 +2776,14 @@ dot-case@^1.1.0:
   dependencies:
     sentence-case "^1.1.2"
 
+dotenv@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-2.0.0.tgz#bd759c357aaa70365e01c96b7b0bec08a6e0d949"
+
+dotenv@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.0.0.tgz#24e37c041741c5f4b25324958ebbc34bca965935"
+
 duplexer3@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
@@ -3121,9 +3135,11 @@ expect@^22.4.0:
     jest-message-util "^22.4.3"
     jest-regex-util "^22.4.3"
 
-"expo-activity-feed@link:../expo-package":
-  version "0.0.0"
-  uid ""
+expo-activity-feed@^0.5.15:
+  version "0.5.15"
+  resolved "https://registry.yarnpkg.com/expo-activity-feed/-/expo-activity-feed-0.5.15.tgz#b6ba54190a1749f0bd31a87b57f38292d6f786ee"
+  dependencies:
+    react-native-activity-feed-core "0.5.15"
 
 expo@^27.0.1:
   version "27.1.1"
@@ -6436,12 +6452,19 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
 react-native-activity-feed-core@0.5.15:
-  version "0.0.0"
-  uid ""
-
-"react-native-activity-feed-core@link:..":
-  version "0.0.0"
-  uid ""
+  version "0.5.15"
+  resolved "https://registry.yarnpkg.com/react-native-activity-feed-core/-/react-native-activity-feed-core-0.5.15.tgz#b787168fe897fdd784f001b8b7cbecbd26a6bbd3"
+  dependencies:
+    es6-symbol "^3.1.1"
+    faker "^4.1.0"
+    getstream "3.21.0-beta.7"
+    immutable "^4.0.0-rc.9"
+    moment "^2.22.2"
+    numeral "^2.0.6"
+    react-native-keyboard-spacer "^0.4.1"
+    react-native-sticky-keyboard-accessory "^0.1.1"
+    stream-analytics "^2.7.1"
+    url-parse "^1.4.3"
 
 react-native-branch@2.0.0-beta.3:
   version "2.0.0-beta.3"
@@ -6450,6 +6473,12 @@ react-native-branch@2.0.0-beta.3:
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
+
+react-native-dotenv@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-0.2.0.tgz#311551cb6a35a3dcfede648bded55c0e3ece579d"
+  dependencies:
+    babel-plugin-dotenv "0.1.1"
 
 react-native-drawer-layout-polyfill@^1.3.2:
   version "1.3.2"

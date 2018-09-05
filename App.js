@@ -5,6 +5,12 @@ import {
   createBottomTabNavigator,
 } from 'react-navigation';
 
+import {
+  STREAM_API_KEY,
+  STREAM_API_TOKEN,
+  STREAM_APP_ID,
+} from 'react-native-dotenv';
+
 import Icon from './components/Icon';
 import HomeScreen from './screens/HomeScreen';
 import SearchScreen from './screens/SearchScreen';
@@ -96,24 +102,12 @@ const Navigation = createStackNavigator({
 });
 
 const App = () => {
-  let apiKey = process.env['STREAM_API_KEY'];
-  let appId = process.env['STREAM_APP_ID'];
-  let token = process.env['STREAM_TOKEN'];
+  let apiKey = STREAM_API_KEY;
+  let appId = STREAM_APP_ID;
+  let token = STREAM_API_TOKEN;
 
-  if (!apiKey) {
-    console.error('STREAM_API_KEY should be set');
-    return null;
-  }
-
-  if (!appId) {
-    console.error('STREAM_APP_ID should be set');
-    return null;
-  }
-
-  if (!token) {
-    console.error('STREAM_TOKEN should be set');
-    return null;
-  }
+  // IMPORTANT: This token is should normally be generated server side, so the
+  // client doesn't have access to the master secret.
 
   // eslint-disable-next-line no-unused-vars
   function example() {

@@ -5,19 +5,29 @@ import faker from 'faker';
 
 import type { UserSession, CloudClient } from '../types';
 
-async function main() {
-  let apiKey = process.env['STREAM_API_KEY'] || '';
-  let apiSecret = process.env['STREAM_API_SECRET'] || '';
-  let appId = process.env['STREAM_APP_ID'] || '';
-  let apiUrl = process.env['STREAM_API_URL'];
+import dotenv from 'dotenv';
+dotenv.config();
 
-  console.log(apiKey, apiSecret, apiUrl);
-  let client: CloudClient = stream.connectCloud(apiKey, appId, {
-    urlOverride: {
-      api: apiUrl,
-    },
-    keepAlive: false,
-  });
+async function main() {
+  let apiKey = process.env.STREAM_API_KEY;
+  let apiSecret = process.env.STREAM_API_SECRET;
+  let appId = process.env.STREAM_APP_ID;
+  if (!apiKey) {
+    console.error('STREAM_API_KEY should be set');
+    return;
+  }
+
+  if (!appId) {
+    console.error('STREAM_APP_ID should be set');
+    return;
+  }
+
+  if (!apiSecret) {
+    console.error('STREAM_SECRET should be set');
+    return;
+  }
+
+  let client: CloudClient = stream.connectCloud(apiKey, appId);
 
   function createUserSession(userId): UserSession {
     return client.createUserSession(
@@ -29,6 +39,9 @@ async function main() {
   let fluff = createUserSession('fluff');
   let league = createUserSession('justiceleague');
   let bowie = createUserSession('davidbowie');
+
+  console.log('Add the following line to your .env file');
+  console.log('STREAM_API_TOKEN=' + batman.token);
 
   await batman.user.getOrCreate({
     name: 'Batman',
@@ -160,9 +173,6 @@ async function main() {
     withOwnReactions: true,
     withRecentReactions: true,
   });
-  console.log(response.results[0].reaction_counts);
-  console.log(response.results[0].own_reactions);
-  console.log(response.results[0].latest_reactions);
 
   await ignore409(() =>
     Promise.all(

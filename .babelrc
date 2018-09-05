@@ -1,10 +1,9 @@
 {
-  "presets": ["flow", "react-native"],
+  "presets": ["flow", "react-native", "react-native-dotenv"],
   "env": {
     "development": {
       "plugins": [
         "transform-react-jsx-source",
-        "transform-inline-environment-variables"
       ]
     }
   }

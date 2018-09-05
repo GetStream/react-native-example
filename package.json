@@ -19,6 +19,7 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
+    "dotenv": "^6.0.0",
     "eslint": "^5.1.0",
     "eslint-plugin-flowtype": "^2.29.1",
     "eslint-plugin-jest": "^21.17.0",
@@ -51,12 +52,12 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-expo": "^4.0.0",
     "expo": "^27.0.1",
+    "expo-activity-feed": "^0.5.15",
     "faker": "^4.1.0",
     "numeral": "^2.0.6",
     "react": "16.3.1",
     "react-native": "~0.55.2",
-    "react-native-activity-feed-core": "link:..",
-    "expo-activity-feed": "link:../expo-package",
+    "react-native-dotenv": "^0.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.5.0",
     "react-navigation": "^2.3.1"
   }
