@@ -4,6 +4,7 @@ Follow these instructions to get this example running on a phone or emulator:
 
 ```
 git clone https://github.com/GetStream/react-native-example
+cd react-native-example
 npm install
 cp .env.example .env
 ```
