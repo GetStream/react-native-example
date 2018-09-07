@@ -1,6 +1,13 @@
 # React Native Activity Feed Example
 
-Follow these instructions to get this example running on a phone or emulator:
+A mobile application built using React Native, [Stream.io](https://getstream.io/) and [react-native-activity-feed](https://github.com/GetStream/react-native-activity-feed)
+
+## Requirements
+
+- NodeJS 
+- Expo 
+
+## Setup instructions
 
 ```
 git clone https://github.com/GetStream/react-native-example
