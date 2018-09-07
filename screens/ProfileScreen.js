@@ -18,8 +18,6 @@ export default class ProfileScreen extends React.Component<Props> {
     headerStyle: {
       backgroundColor: 'transparent',
       borderBottomColor: 'transparent',
-      paddingLeft: 10,
-      paddingRight: 10,
     },
     headerRight: (
       <Button pressed={() => navigation.navigate('EditProfile')}>

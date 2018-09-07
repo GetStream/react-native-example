@@ -2,10 +2,12 @@
 
 A mobile application built using React Native, [Stream.io](https://getstream.io/) and [react-native-activity-feed](https://github.com/GetStream/react-native-activity-feed)
 
+![screenshots of example app](./images/screenshots@2x.png)
+
 ## Requirements
 
-- NodeJS 
-- Expo 
+- NodeJS
+- Expo
 
 ## Setup instructions
 
