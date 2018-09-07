@@ -23,9 +23,4 @@ Copy the line this script outputs and put it in your `.env` file.
 npm run
 ```
 
-Then to see the app on your phone or emulator, follow the instructions that are
-shown in the terminal. And you should have an app that looks something like
-this:
-
-
-**TODO: Screenshot**
+Follow the instructions from the terminal to preview the app on your phone or using an emulator.
