@@ -9,7 +9,7 @@ npm install
 cp .env.example .env
 ```
 
-Get your Stream API credentials from **<TODO: Link to onboarding page here>**.
+Get your Stream API credentials from the [user dashboard](https://getstream.io/dashboard/).
 
 Open the `.env` file in your favorite editor. And fill in the credentials.
 
