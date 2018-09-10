@@ -23,10 +23,6 @@ import StatusUpdateScreen from './screens/StatusUpdateScreen';
 import {
   Avatar,
   StreamApp,
-  FlatFeed,
-  Activity,
-  StatusUpdateForm,
-  LikeButton,
   IconBadge,
 } from 'expo-activity-feed';
 import type { UserResponse } from './types';
@@ -71,7 +67,6 @@ const TabNavigator = createBottomTabNavigator(
           );
         } else if (routeName === 'Profile') {
           return (
-            // TODO: Link this to the current user
             <Avatar
               source={(userData: UserResponse) => userData.data.profileImage}
               size={25}
