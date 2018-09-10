@@ -4,6 +4,16 @@ A mobile application built using React Native, [Stream.io](https://getstream.io/
 
 ![screenshots of example app](/images/screenshots@2x.png)
 
+## Features
+
+- Flat feed
+- Notification feed
+- Activity detail screen
+- Profile screen
+- Profile update screen
+- Likes & Comments
+- Status update with hashtags, mentions, URL enrichment and image upload
+
 ## Requirements
 
 - NodeJS
