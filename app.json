@@ -1,6 +1,6 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0",
+    "sdkVersion": "29.0.0",
     "name": "ActivityFeedShowcase",
     "slug": "react-native-activity-feed-showcase",
     "splash": {
