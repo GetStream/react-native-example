@@ -7,9 +7,6 @@
       "image": "./images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "androidStatusBar": {
-      "backgroundColor": "#2F7DEB"
     }
   }
 }

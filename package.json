@@ -53,7 +53,7 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-expo": "^4.0.0",
     "expo": "^27.0.1",
-    "expo-activity-feed": "^0.5.15",
+    "expo-activity-feed": "^0.6.1",
     "faker": "^4.1.0",
     "numeral": "^2.0.6",
     "react": "16.3.1",

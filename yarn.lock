@@ -3135,11 +3135,11 @@ expect@^22.4.0:
     jest-message-util "^22.4.3"
     jest-regex-util "^22.4.3"
 
-expo-activity-feed@^0.5.15:
-  version "0.5.15"
-  resolved "https://registry.yarnpkg.com/expo-activity-feed/-/expo-activity-feed-0.5.15.tgz#b6ba54190a1749f0bd31a87b57f38292d6f786ee"
+expo-activity-feed@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/expo-activity-feed/-/expo-activity-feed-0.6.1.tgz#ef275a93062f6b86d7ded5333d9ace3aa7edea91"
   dependencies:
-    react-native-activity-feed-core "0.5.15"
+    react-native-activity-feed-core "0.6.1"
 
 expo@^27.0.1:
   version "27.1.1"
@@ -6451,9 +6451,9 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
-react-native-activity-feed-core@0.5.15:
-  version "0.5.15"
-  resolved "https://registry.yarnpkg.com/react-native-activity-feed-core/-/react-native-activity-feed-core-0.5.15.tgz#b787168fe897fdd784f001b8b7cbecbd26a6bbd3"
+react-native-activity-feed-core@0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-activity-feed-core/-/react-native-activity-feed-core-0.6.1.tgz#788295ebf60018b2af70a2675dbf86104386113b"
   dependencies:
     es6-symbol "^3.1.1"
     faker "^4.1.0"
@@ -6462,6 +6462,7 @@ react-native-activity-feed-core@0.5.15:
     moment "^2.22.2"
     numeral "^2.0.6"
     react-native-keyboard-spacer "^0.4.1"
+    react-native-safe-area-view "0.9.0"
     react-native-sticky-keyboard-accessory "^0.1.1"
     stream-analytics "^2.7.1"
     url-parse "^1.4.3"
@@ -6526,15 +6527,15 @@ react-native-maps@0.21.0:
     babel-plugin-module-resolver "^2.3.0"
     babel-preset-react-native "1.9.0"
 
-react-native-safe-area-view@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"
+react-native-safe-area-view@0.9.0, react-native-safe-area-view@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.9.0.tgz#10ece2ecac70e7005a5b0b3f06c8833060e6d21f"
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-react-native-safe-area-view@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.9.0.tgz#10ece2ecac70e7005a5b0b3f06c8833060e6d21f"
+react-native-safe-area-view@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"
   dependencies:
     hoist-non-react-statics "^2.3.1"
 

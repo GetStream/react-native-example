@@ -15,7 +15,7 @@ const RepostList = ({ reactions }: Props) => {
     <ReactionList
       reactions={reactions}
       reactionKind={'repost'}
-      renderReaction={(reaction) => <RepostItem repost={reaction} />}
+      Reaction={(reaction) => <RepostItem repost={reaction} />}
     >
       <SectionHeader>Reposts</SectionHeader>
     </ReactionList>

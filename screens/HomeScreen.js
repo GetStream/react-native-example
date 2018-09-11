@@ -72,7 +72,7 @@ class HomeScreen extends React.Component<Props> {
         }}
         notify
         navigation={this.props.navigation}
-        renderActivity={(props) => (
+        Activity={(props) => (
           <TouchableOpacity
             onPress={() => this._onPressActivity(props.activity)}
           >

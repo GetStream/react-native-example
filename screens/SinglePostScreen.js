@@ -50,7 +50,7 @@ export default class SinglePostScreen extends React.Component<Props> {
           feedGroup={feedGroup}
           userId={userId}
           navigation={this.props.navigation}
-          renderActivity={(props) => (
+          Activity={(props) => (
             <React.Fragment>
               <Activity
                 {...props}

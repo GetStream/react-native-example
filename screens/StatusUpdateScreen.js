@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Image, TouchableOpacity } from 'react-native';
-import { StreamApp, StatusUpdateForm } from 'expo-activity-feed';
+import { StatusUpdateForm } from 'expo-activity-feed';
 
 class StatusUpdateScreen extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -32,20 +32,13 @@ class StatusUpdateScreen extends React.Component {
 
   render() {
     return (
-      <StreamApp.Consumer>
-        {(appCtx) => {
-          return (
-            <StatusUpdateForm
-              screen
-              {...this.props}
-              {...appCtx}
-              registerSubmit={(submitFunc) => {
-                this.props.navigation.setParams({ submitFunc });
-              }}
-            />
-          );
+      <StatusUpdateForm
+        fullscreen
+        {...this.props}
+        registerSubmit={(submitFunc) => {
+          this.props.navigation.setParams({ submitFunc });
         }}
-      </StreamApp.Consumer>
+      />
     );
   }
 }

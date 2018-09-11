@@ -82,7 +82,7 @@ export default class NotificationScreen extends React.Component<Props> {
   render() {
     return (
       <NotificationFeed
-        renderGroup={this._renderGroup}
+        Group={this._renderGroup}
         navigation={this.props.navigation}
         notify
       />
