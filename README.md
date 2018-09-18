@@ -28,7 +28,13 @@ npm install
 cp .env.example .env
 ```
 
-Get your Stream API credentials from the [user dashboard](https://getstream.io/dashboard/).
+Get your Stream API credentials from the [user dashboard](https://getstream.io/dashboard/) and make sure your application has these feed groups:
+
+- user (type Flat)
+- timeline (type Flat)
+- notification (type Notification)
+
+If you followed the [React Native tutorial](https://getstream.io/react-native-activity-feed/tutorial/=), you already have a pre-configured app on your account that you can use for this project.
 
 Open the `.env` file in your favorite editor. And fill in the credentials.
 
