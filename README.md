@@ -45,7 +45,7 @@ npm run init-data
 Copy the line this script outputs and put it in your `.env` file.
 
 ```
-npm run
+npm start
 ```
 
 Follow the instructions from the terminal to preview the app on your phone or using an emulator.
