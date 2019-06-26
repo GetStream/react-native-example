@@ -13,12 +13,9 @@
     "notification feed"
   ],
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.5",
-    "babel-plugin-root-import": "^6.1.0",
-    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
+    "@babel/core": "^7.4.5",
+    "babel-plugin-dotenv": "^0.1.1",
+    "babel-preset-expo": "^5.1.1",
     "dotenv": "^6.0.0",
     "eslint": "^5.1.0",
     "eslint-plugin-flowtype": "^2.29.1",
@@ -26,7 +23,8 @@
     "eslint-plugin-react": "^7.10.0",
     "flow-bin": "^0.80.0",
     "flow-copy-source": "^2.0.2",
-    "jest-expo": "~27.0.0",
+    "jest-expo": "~33.0.0",
+    "metro-react-native-babel-preset": "^0.54.1",
     "prettier": "^1.13.7",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
@@ -50,14 +48,13 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "babel-plugin-module-resolver": "^3.1.1",
-    "babel-preset-expo": "^4.0.0",
-    "expo": "^29.0.0",
+    "expo": "^33.0.0",
     "expo-activity-feed": "^0.8.8",
+    "expo-keep-awake": "~5.0.1",
     "faker": "^4.1.0",
     "numeral": "^2.0.6",
-    "react": "16.3.1",
-    "react-native": "~0.55.2",
+    "react": "16.8.3",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-dotenv": "^0.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.5.0",
     "react-navigation": "^2.3.1"

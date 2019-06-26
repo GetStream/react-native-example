@@ -2,7 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
-const blacklist = require('metro/src/blacklist');
+try {
+  // >= 0.57
+  blacklist = require('metro-config/src/defaults/blacklist');
+} catch (e) {
+  // <= 0.56
+  blacklist = require('metro/src/blacklist');
+}
 let repoDir = path.dirname(__dirname);
 
 module.exports = {

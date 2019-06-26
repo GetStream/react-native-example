@@ -9,7 +9,7 @@ import {
   STREAM_API_KEY,
   STREAM_API_TOKEN,
   STREAM_APP_ID,
-} from 'react-native-dotenv';
+} from 'babel-dotenv';
 
 import Icon from './components/Icon';
 import HomeScreen from './screens/HomeScreen';
