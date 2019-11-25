@@ -13,7 +13,9 @@
     "notification feed"
   ],
   "devDependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "babel-node": "0.0.1-security",
     "babel-plugin-dotenv": "^0.1.1",
     "babel-preset-expo": "^5.1.1",
     "dotenv": "^6.0.0",
@@ -41,7 +43,7 @@
     "prettier": "prettier --list-different '**/*.{js,ts}'",
     "lint": "prettier --list-different '**/*.{js,ts}' && eslint '**/*.js' --max-warnings 0 && flow",
     "lint-fix": "prettier --write '**/*.{js,ts}' && eslint --fix '**/*.js'",
-    "init-data": "babel-node scripts/initData.js",
+    "init-data": "npx babel-node scripts/initData.js",
     "test": "jest"
   },
   "jest": {
