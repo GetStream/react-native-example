@@ -29,7 +29,7 @@ cd react-native-example
 npm install
 ```
 
-### 2. Setup up you app
+### 2. Setup up your app
 
 Get your Stream API credentials from the [user dashboard](https://getstream.io/dashboard/) and make sure your application has these feed groups:
 
