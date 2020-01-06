@@ -10,7 +10,7 @@ import {
   LikeButton,
   ReactionIcon,
   CommentList,
-  LikesList,
+  LikeList,
 } from 'expo-activity-feed';
 
 import RepostList from '../components/RepostList';
@@ -50,7 +50,7 @@ export default class SinglePostScreen extends React.Component<Props> {
           feedGroup={feedGroup}
           userId={userId}
           navigation={this.props.navigation}
-          Activity={(props) => (
+          Activity={(props) => console.log(props.activity.id) || (
             <React.Fragment>
               <Activity
                 {...props}
@@ -68,12 +68,12 @@ export default class SinglePostScreen extends React.Component<Props> {
                   </View>
                 }
               />
-              <CommentList reactions={props.activity.latest_reactions} />
-              <RepostList reactions={props.activity.latest_reactions} />
+              <CommentList activityId={props.activity} />
 
               <View style={styles.sectionHeader} />
               <View style={styles.likesContainer}>
-                <LikesList
+                <LikeList
+                  activityId={props.activity}
                   reactions={props.activity.latest_reactions}
                   reactionKind="heart"
                 />

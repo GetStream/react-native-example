@@ -10,9 +10,10 @@ type Props = {
   reactions: ?ReactionMap,
 };
 
-const RepostList = ({ reactions }: Props) => {
+const RepostList = ({ reactions, activityId }: Props) => {
   return (
     <ReactionList
+      activityId={activityId}
       reactions={reactions}
       reactionKind={'repost'}
       Reaction={(reaction) => <RepostItem repost={reaction} />}
