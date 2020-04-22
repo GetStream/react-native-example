@@ -1,6 +1,6 @@
 {
   "name": "react-native-activity-feed-showcase",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "BSD-3-Clause",
   "author": {
     "company": "Stream.io Inc"
@@ -29,7 +29,7 @@
     "jest-expo": "~33.0.0",
     "metro-react-native-babel-preset": "^0.54.1",
     "prettier": "^1.13.7",
-    "react-native-scripts": "1.14.0",
+    "react-native-scripts": "^2.0.1",
     "react-test-renderer": "16.3.1"
   },
   "main": "./index.js",
@@ -51,13 +51,13 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^33.0.0",
+    "expo": "^34.0.1",
     "expo-activity-feed": "^0.8.8",
     "expo-keep-awake": "~5.0.1",
     "faker": "^4.1.0",
     "numeral": "^2.0.6",
     "react": "16.8.3",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.1.tar.gz",
     "react-native-dotenv": "^0.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.5.0",
     "react-navigation": "^2.3.1"
