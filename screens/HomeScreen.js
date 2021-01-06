@@ -1,65 +1,57 @@
-// @flow
-import React from 'react';
-import { StatusBar, Image, TouchableOpacity, View } from 'react-native';
+/* eslint-disable react/display-name */
+import React from "react";
+import { StatusBar, Image, TouchableOpacity, View } from "react-native";
 
 import {
   Avatar,
   FlatFeed,
   Activity,
   LikeButton,
-  ReactionIcon,
-} from 'expo-activity-feed';
-import type { UserResponse, ActivityData } from '../types';
+  ReactionIcon
+} from "expo-activity-feed";
 
-import PostIcon from '../images/icons/post.png';
-import ReplyIcon from '../images/icons/reply.png';
+import PostIcon from "../images/icons/post.png";
+import ReplyIcon from "../images/icons/reply.png";
 
-import type { NavigationScreen } from 'expo-activity-feed';
-import type { NavigationEventSubscription } from 'react-navigation';
+export const navigationOptions = ({ navigation }) => ({
+  title: "HOME",
+  headerTitleStyle: {
+    fontWeight: "500",
+    fontSize: 13
+  },
+  headerLeft: () => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Profile")}
+      style={{ paddingLeft: 15 }}
+    >
+      <Avatar
+        source={userData => userData.data.profileImage}
+        size={23}
+        noShadow
+      />
+    </TouchableOpacity>
+  ),
+  headerRight: () => (
+    <TouchableOpacity
+      onPress={() => navigation.navigate("NewPost")}
+      style={{ paddingRight: 15 }}
+    >
+      <Image source={PostIcon} style={{ width: 23, height: 23 }} />
+    </TouchableOpacity>
+  )
+})
 
-type Props = {|
-  navigation: NavigationScreen,
-|};
-
-class HomeScreen extends React.Component<Props> {
-  _navListener: NavigationEventSubscription;
-  static navigationOptions = ({ navigation }: Props) => ({
-    title: 'HOME',
-    headerTitleStyle: {
-      fontWeight: '500',
-      fontSize: 13,
-    },
-    headerLeft: (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Profile')}
-        style={{ paddingLeft: 15 }}
-      >
-        <Avatar
-          source={(userData: UserResponse) => userData.data.profileImage}
-          size={23}
-          noShadow
-        />
-      </TouchableOpacity>
-    ),
-    headerRight: (
-      <TouchableOpacity
-        onPress={() => navigation.navigate('NewPost')}
-        style={{ paddingRight: 15 }}
-      >
-        <Image source={PostIcon} style={{ width: 23, height: 23 }} />
-      </TouchableOpacity>
-    ),
-  });
-
+// TODO: Convert to FC
+export default class HomeScreen extends React.Component {
   componentDidMount() {
-    this._navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('dark-content');
+    this._navListener = this.props.navigation.addListener("didFocus", () => {
+      StatusBar.setBarStyle("dark-content");
     });
   }
 
-  _onPressActivity = (activity: ActivityData) => {
-    this.props.navigation.navigate('SinglePost', {
-      activity: activity,
+  _onPressActivity = activity => {
+    this.props.navigation.navigate("SinglePost", {
+      activity
     });
   };
 
@@ -68,19 +60,19 @@ class HomeScreen extends React.Component<Props> {
       <FlatFeed
         feedGroup="timeline"
         options={{
-          limit: 10,
+          limit: 10
         }}
         notify
         navigation={this.props.navigation}
-        Activity={(props) => (
+        Activity={props => (
           <TouchableOpacity
             onPress={() => this._onPressActivity(props.activity)}
           >
             <Activity
               {...props}
               Footer={
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <LikeButton {...props} />
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                  <LikeButton reactionKind="heart" {...props} />
 
                   <ReactionIcon
                     icon={ReplyIcon}
@@ -98,5 +90,3 @@ class HomeScreen extends React.Component<Props> {
     );
   }
 }
-
-export default HomeScreen;

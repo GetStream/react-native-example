@@ -1,6 +1,7 @@
-// @flow
-import React from 'react';
-import { SafeAreaView, View, StyleSheet } from 'react-native';
+/* eslint-disable react/display-name */
+// 
+import React from "react";
+import { SafeAreaView, View, StyleSheet } from "react-native";
 
 import {
   SinglePost,
@@ -10,53 +11,48 @@ import {
   LikeButton,
   ReactionIcon,
   CommentList,
-  LikeList,
-} from 'expo-activity-feed';
+  CommentItem,
+  LikeList
+} from "expo-activity-feed";
 
-import RepostList from '../components/RepostList';
+import RepostList from "../components/RepostList";
+import ReplyIcon from "../images/icons/reply.png";
 
-import type { UserResponse } from '../types';
-import type { NavigationScreen } from 'expo-activity-feed';
 
-import ReplyIcon from '../images/icons/reply.png';
-
-type Props = {|
-  navigation: NavigationScreen,
-|};
-
-export default class SinglePostScreen extends React.Component<Props> {
-  static navigationOptions = ({ navigation }: Props) => ({
-    title: 'POST DETAIL',
-    headerLeft: (
-      <View style={{ paddingLeft: 15 }}>
-        <BackButton pressed={() => navigation.goBack()} blue />
-      </View>
-    ),
-    headerTitleStyle: {
-      fontWeight: '500',
-      fontSize: 13,
-    },
-  });
-
+// TODO: Convert to FC
+export const navigationOptions = ({ navigation }) => ({
+  title: "POST DETAIL",
+  headerLeft: () => (
+    <View style={{ paddingLeft: 15 }}>
+      <BackButton pressed={() => navigation.goBack()} blue />
+    </View>
+  ),
+  headerTitleStyle: {
+    fontWeight: "500",
+    fontSize: 13
+  }
+});
+export default class SinglePostScreen extends React.Component {
   render() {
-    const { navigation } = this.props;
-    const activity = navigation.getParam('activity');
-    const feedGroup = navigation.getParam('feedGroup');
-    const userId = navigation.getParam('userId');
+    const { route } = this.props;
+    const activity = route.params.activity;
+    const feedGroup = route.params.feedGroup;
+    const userId = route.params.userId;
     return (
       <SafeAreaView style={styles.container}>
         <SinglePost
           activity={activity}
           feedGroup={feedGroup}
           userId={userId}
+          options={{ withOwnChildren: true }}
           navigation={this.props.navigation}
-          Activity={(props) => console.log(props.activity.id) || (
+          Activity={props => (
             <React.Fragment>
               <Activity
                 {...props}
                 Footer={
-                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <LikeButton {...props} />
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <LikeButton reactionKind="heart" {...props} />
 
                     <ReactionIcon
                       icon={ReplyIcon}
@@ -68,34 +64,37 @@ export default class SinglePostScreen extends React.Component<Props> {
                   </View>
                 }
               />
-              <CommentList activityId={props.activity} />
+              <View style={styles.likesContainer}>
+                <LikeList activityId={props.activity.id} reactionKind="heart" />
+              </View>
+              <RepostList activityId={props.activity.id} />
+              <CommentList
+                activityId={props.activity.id}
+                infiniteScroll
+                reverseOrder
+                CommentItem={({ comment }) => (
+                  <React.Fragment>
+                    <CommentItem
+                      comment={comment}
+                      Footer={<LikeButton reaction={comment} {...props} />}
+                    />
+                  </React.Fragment>
+                )}
+              />
 
               <View style={styles.sectionHeader} />
-              <View style={styles.likesContainer}>
-                <LikeList
-                  activityId={props.activity}
-                  reactions={props.activity.latest_reactions}
-                  reactionKind="heart"
-                />
-              </View>
             </React.Fragment>
           )}
-          Footer={(props) => {
-            return (
-              <CommentBox
-                onSubmit={(text) =>
-                  props.onAddReaction('comment', activity, {
-                    data: { text: text },
-                  })
-                }
-                avatarProps={{
-                  source: (userData: UserResponse) =>
-                    userData.data.profileImage,
-                }}
-                styles={{ container: { height: 78 } }}
-              />
-            );
-          }}
+          Footer={props => (
+            <CommentBox
+              activity={activity}
+              onAddReaction={props.onAddReaction}
+              avatarProps={{
+                source: (userData: UserResponse) => userData.data.profileImage
+              }}
+              styles={{ container: { height: 78 } }}
+            />
+          )}
         />
       </SafeAreaView>
     );
@@ -105,6 +104,6 @@ export default class SinglePostScreen extends React.Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
-  },
+    backgroundColor: "#ffffff"
+  }
 });

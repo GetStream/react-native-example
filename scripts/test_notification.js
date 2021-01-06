@@ -1,42 +1,44 @@
-// @flow
-import stream from 'getstream';
-import type { UserSession, CloudClient } from '../types';
+import stream from "getstream";
+
+import dotenv from "dotenv";
+dotenv.config();
 
 async function main() {
-  // let apiKey = process.env['STREAM_API_KEY'] || '';
-  // let apiSecret = process.env['STREAM_API_SECRET'] || '';
-  // let appId = process.env['STREAM_APP_ID'] || '';
-  // let apiUrl = process.env['STREAM_API_URL'];
-
-  let apiKey = '6hwxyxcq4rpe';
-  let appId = '35808';
-  let apiSecret =
-    '8mdkn9n6vqe4dngtjznnm66n2e9vq3x6a2ep5e82gdxntbqbftmqmtxwqee47rjt';
-
-  console.log(apiKey, apiSecret);
-  let client: CloudClient = stream.connectCloud(apiKey, appId, {
-    // urlOverride: {
-    //   api: apiUrl,
-    // },
-    keepAlive: false,
-  });
-
-  function createUserSession(userId): UserSession {
-    return client.createUserSession(
-      stream.signing.JWTUserSessionToken(apiSecret, userId),
-    );
+  const apiKey = process.env.STREAM_API_KEY;
+  const apiSecret = process.env.STREAM_API_SECRET;
+  const appId = process.env.STREAM_APP_ID;
+  if (!apiKey) {
+    console.error("STREAM_API_KEY should be set");
+    return;
   }
 
-  let batman = createUserSession('batman');
-  let content = 'test2';
-  console.log(await batman.feed('notification').get({ limit: 1 }));
-  await batman.feed('notification').addActivity({
-    actor: batman.user,
-    verb: 'post',
+  if (!appId) {
+    console.error("STREAM_APP_ID should be set");
+    return;
+  }
+
+  if (!apiSecret) {
+    console.error("STREAM_SECRET should be set");
+    return;
+  }
+
+  console.log(apiKey, apiSecret);
+  const serverClient = stream.connect(apiKey, apiSecret, appId);
+
+  function createUserClient(userId) {
+    return stream.connect(apiKey, serverClient.createUserToken(userId), appId);
+  }
+
+  const batman = createUserClient("batman");
+  const content = "test2";
+  console.log(await batman.feed("notification").get({ limit: 1 }));
+  await batman.feed("notification").addActivity({
+    actor: batman.currentUser,
+    verb: "post",
     object: content,
 
-    content: content,
+    content
   });
-  console.log(await batman.feed('notification').get({ limit: 1 }));
+  console.log(await batman.feed("notification").get({ limit: 1 }));
 }
 main();

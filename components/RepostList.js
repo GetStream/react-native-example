@@ -1,26 +1,27 @@
-// @flow
-import React from 'react';
-import { ReactionList, SectionHeader } from 'expo-activity-feed';
+import React from "react";
+import { ReactionList, SectionHeader } from "expo-activity-feed";
 
-import RepostItem from './RepostItem';
+import RepostItem from "./RepostItem";
 
-import type { ReactionMap } from '../types';
+/**
+ * RepostList uses ReactionList under the hood to render a list of reposts.
+ *
+ * @example ./examples/RepostList.md
+ */
 
-type Props = {
-  reactions: ?ReactionMap,
-};
-
-const RepostList = ({ reactions, activityId }: Props) => {
-  return (
-    <ReactionList
-      activityId={activityId}
-      reactions={reactions}
-      reactionKind={'repost'}
-      Reaction={(reaction) => <RepostItem repost={reaction} />}
-    >
-      <SectionHeader>Reposts</SectionHeader>
-    </ReactionList>
-  );
-};
-
-export default RepostList;
+// TODO: Convert to FC
+export default class ReposttList extends React.PureComponent {
+  render() {
+    const { activityId, activityPath } = this.props;
+    return (
+      <ReactionList
+        activityId={activityId}
+        reactionKind={"repost"}
+        Reaction={reaction => <RepostItem repost={reaction} />}
+        activityPath={activityPath}
+      >
+        <SectionHeader>Reposts</SectionHeader>
+      </ReactionList>
+    );
+  }
+}

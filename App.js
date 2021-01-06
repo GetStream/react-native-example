@@ -1,123 +1,70 @@
-//@flow
-import React from 'react';
-import {
-  createStackNavigator,
-  createBottomTabNavigator,
-} from 'react-navigation';
+/* eslint-disable react/display-name */
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { SafeAreaProvider } from "react-native-safe-area-view";
 
-import {
-  STREAM_API_KEY,
-  STREAM_API_TOKEN,
-  STREAM_APP_ID,
-} from 'babel-dotenv';
+import { STREAM_API_KEY, STREAM_API_TOKEN, STREAM_APP_ID } from "@env";
 
-import Icon from './components/Icon';
-import HomeScreen from './screens/HomeScreen';
-import SearchScreen from './screens/SearchScreen';
-import NotificationsScreen from './screens/NotificationsScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import EditProfileScreen from './screens/EditProfileScreen';
-import SinglePostScreen from './screens/SinglePostScreen';
-import StatusUpdateScreen from './screens/StatusUpdateScreen';
+import EditProfileScreen, { navigationOptions as editProfileNavigationOptions } from "./screens/EditProfileScreen";
+import SinglePostScreen, { navigationOptions as singlePostNavigationOptions } from "./screens/SinglePostScreen";
+import StatusUpdateScreen, { navigationOptions as statusUpdateNavigationOptions } from "./screens/StatusUpdateScreen";
 
-import {
-  Avatar,
-  StreamApp,
-  IconBadge,
-} from 'expo-activity-feed';
-import type { UserResponse } from './types';
+import { StreamApp } from "expo-activity-feed";
+import { BottomTabNavigator } from "./components/BottomTabNavigator";
 
-// $FlowFixMe
-const NotificationsStack = createStackNavigator({
-  Notifications: { screen: NotificationsScreen },
-});
-
-const ProfileStack = createStackNavigator({
-  Profile: { screen: ProfileScreen },
-});
-
-const SearchStack = createStackNavigator({
-  Search: { screen: SearchScreen },
-});
-
-const HomeStack = createStackNavigator({
-  Home: { screen: HomeScreen },
-});
-
-const TabNavigator = createBottomTabNavigator(
-  {
-    Home: HomeStack,
-    Search: SearchStack,
-    Notifications: NotificationsStack,
-    Profile: ProfileStack,
-  },
-  {
-    navigationOptions: ({ navigation }) => ({
-      tabBarIcon: () => {
-        const { routeName } = navigation.state;
-        if (routeName === 'Home') {
-          return <Icon name="home" />;
-        } else if (routeName === 'Search') {
-          return <Icon name="search" />;
-        } else if (routeName === 'Notifications') {
-          return (
-            <IconBadge showNumber>
-              <Icon name="notifications" />
-            </IconBadge>
-          );
-        } else if (routeName === 'Profile') {
-          return (
-            <Avatar
-              source={(userData: UserResponse) => userData.data.profileImage}
-              size={25}
-              noShadow
-            />
-          );
-        }
-      },
-    }),
-    initialRouteName: 'Home',
-  },
-);
-
-const doNotShowHeaderOption = {
-  navigationOptions: {
-    header: null,
-  },
-};
-
-const Navigation = createStackNavigator({
-  Tabs: {
-    screen: TabNavigator,
-    ...doNotShowHeaderOption,
-  },
-  SinglePost: { screen: SinglePostScreen },
-  NewPost: { screen: StatusUpdateScreen },
-  EditProfile: { screen: EditProfileScreen },
-});
+const Stack = createStackNavigator();
 
 const App = () => {
-  let apiKey = STREAM_API_KEY;
-  let appId = STREAM_APP_ID;
-  let token = STREAM_API_TOKEN;
+  const apiKey = STREAM_API_KEY;
+  const appId = STREAM_APP_ID;
+  const token = STREAM_API_TOKEN;
+
+  // IMPORTANT: This token is should normally be generated server side, so the
+  // client doesn't have access to the master secret.
 
   return (
-    <StreamApp
-      apiKey={apiKey}
-      appId={appId}
-      token={token}
-      defaultUserData={{
-        name: 'Batman',
-        url: 'batsignal.com',
-        desc: 'Smart, violent and brutally tough solutions to crime.',
-        profileImage:
-          'https://i.kinja-img.com/gawker-media/image/upload/s--PUQWGzrn--/c_scale,f_auto,fl_progressive,q_80,w_800/yktaqmkm7ninzswgkirs.jpg',
-        coverImage:
-          'https://i0.wp.com/photos.smugmug.com/Portfolio/Full/i-mwrhZK2/0/ea7f1268/X2/GothamCity-X2.jpg?resize=1280%2C743&ssl=1',
-      }}
-    >
-      <Navigation />
-    </StreamApp>
+    <SafeAreaProvider>
+      <StreamApp
+        apiKey={apiKey}
+        appId={appId}
+        token={token}
+        defaultUserData={{
+          name: "Batman",
+          url: "batsignal.com",
+          desc: "Smart, violent and brutally tough solutions to crime.",
+          profileImage:
+            "https://i.kinja-img.com/gawker-media/image/upload/s--PUQWGzrn--/c_scale,f_auto,fl_progressive,q_80,w_800/yktaqmkm7ninzswgkirs.jpg",
+          coverImage:
+            "https://i0.wp.com/photos.smugmug.com/Portfolio/Full/i-mwrhZK2/0/ea7f1268/X2/GothamCity-X2.jpg?resize=1280%2C743&ssl=1"
+        }}
+      >
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName={BottomTabNavigator}>
+            <Stack.Screen
+              component={BottomTabNavigator}
+              name="BottomTabNavigator"
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              component={SinglePostScreen}
+              name="SinglePost"
+              options={singlePostNavigationOptions}
+            />
+            <Stack.Screen
+              component={StatusUpdateScreen}
+              name="NewPost"
+              options={statusUpdateNavigationOptions}
+            />
+            <Stack.Screen
+              component={EditProfileScreen}
+              name="EditProfile"
+              options={editProfileNavigationOptions}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </StreamApp>
+    </SafeAreaProvider>
   );
 };
 
