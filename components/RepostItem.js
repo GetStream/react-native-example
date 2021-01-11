@@ -1,20 +1,14 @@
-// @flow
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+// 
+import React from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-import { Avatar, humanizeTimestamp } from 'expo-activity-feed';
+import { Avatar, humanizeTimestamp } from "expo-activity-feed";
 
-import HeartIconOutline from '../images/icons/heart-outline.png';
-import RepostIcon from '../images/icons/repost.png';
+import HeartIconOutline from "../images/icons/heart-outline.png";
+import RepostIcon from "../images/icons/repost.png";
 
-import type { Repost } from '../types';
-
-type Props = {
-  onPressLike?: (id: string) => any,
-  repost: Repost,
-};
-
-export default class RepostItem extends React.Component<Props> {
+// TODO: Convert to FC
+export default class RepostItem extends React.Component {
   _onPressLike = () => {
     if (this.props.onPressLike) {
       this.props.onPressLike(this.props.repost.id);
@@ -22,7 +16,7 @@ export default class RepostItem extends React.Component<Props> {
   };
 
   render() {
-    let { repost } = this.props;
+    const { repost } = this.props;
     return (
       <View style={styles.repostItem}>
         <View style={styles.repostAvatar}>
@@ -50,42 +44,42 @@ export default class RepostItem extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   repostItem: {
-    flexDirection: 'row',
+    flexDirection: "row",
     paddingLeft: 15,
     paddingRight: 15,
     paddingBottom: 12,
     paddingTop: 12,
-    alignItems: 'center',
-    borderBottomColor: '#DADFE3',
-    borderBottomWidth: 1,
+    alignItems: "center",
+    borderBottomColor: "#DADFE3",
+    borderBottomWidth: 1
   },
   repostAvatar: {
-    marginRight: 5,
+    marginRight: 5
   },
   repostIcon: {
     width: 20,
-    height: 20,
+    height: 20
   },
   heartIcon: { width: 24, height: 24 },
   repostText: {
     flex: 1,
     marginLeft: 5,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
   repostAuthor: {
-    fontWeight: '700',
-    fontSize: 14,
+    fontWeight: "700",
+    fontSize: 14
   },
   repostContent: {
-    fontSize: 14,
+    fontSize: 14
   },
   repostTime: {
     fontSize: 14,
-    color: '#95A4AD',
+    color: "#95A4AD"
   },
   repostActions: {
-    flexDirection: 'row',
-    marginLeft: 5,
-  },
+    flexDirection: "row",
+    marginLeft: 5
+  }
 });

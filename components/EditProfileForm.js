@@ -1,32 +1,22 @@
-// @flow
+// 
 
-import React from 'react';
-import { View } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import CoverImage from './CoverImage';
-import { Avatar, UploadImage } from 'expo-activity-feed';
-import FormField from './FormField';
-import { StreamApp } from 'expo-activity-feed';
-import type { UserData, StreamAppCtx } from '../types';
+import React from "react";
+import { View, KeyboardAvoidingView } from "react-native";
+import CoverImage from "./CoverImage";
+import { Avatar, UploadImage } from "expo-activity-feed";
+import FormField from "./FormField";
+import { StreamApp } from "expo-activity-feed";
 
-type Props = {|
-  registerSave: (saveFunc: () => any) => void,
-|};
-
-export default function EditProfileForm(props: Props) {
+export default function EditProfileForm(props) {
   return (
     <StreamApp.Consumer>
-      {(appCtx) => <EditProfileFormInner {...props} {...appCtx} />}
+      {appCtx => <EditProfileFormInner {...props} {...appCtx} />}
     </StreamApp.Consumer>
   );
 }
 
-type PropsInner = {| ...Props, ...StreamAppCtx |};
-
-type State = UserData;
-
-class EditProfileFormInner extends React.Component<PropsInner, State> {
-  constructor(props: PropsInner) {
+class EditProfileFormInner extends React.Component {
+  constructor(props) {
     super(props);
     this.state = { ...props.user.data };
   }
@@ -39,28 +29,28 @@ class EditProfileFormInner extends React.Component<PropsInner, State> {
   }
 
   _onUploadButtonPress() {
-    console.log('onUploadButtonPress');
+    console.log("onUploadButtonPress");
   }
 
   render() {
     return (
-      <KeyboardAwareScrollView style={{ flex: 1, backgroundColor: '#ffffff' }}>
+      <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#ffffff" }}>
         <CoverImage source={this.state.coverImage} size={150} />
         <View
           style={{
-            flexDirection: 'row',
-            alignItems: 'flex-end',
+            flexDirection: "row",
+            alignItems: "flex-end",
             paddingRight: 15,
             paddingLeft: 15,
-            height: 200,
+            height: 200
           }}
         >
           <View
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              width: 100 + '%',
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: 100 + "%"
             }}
           >
             <Avatar
@@ -75,22 +65,22 @@ class EditProfileFormInner extends React.Component<PropsInner, State> {
         <View style={{ padding: 15 }}>
           <FormField
             value={this.state.name}
-            label={'Name'}
-            onChangeText={(text) => this.setState({ name: text })}
+            label={"Name"}
+            onChangeText={text => this.setState({ name: text })}
           />
           <FormField
             value={this.state.url}
-            label={'Website'}
-            onChangeText={(text) => this.setState({ url: text })}
+            label={"Website"}
+            onChangeText={text => this.setState({ url: text })}
           />
           <FormField
             value={this.state.desc}
-            label={'Description'}
-            onChangeText={(text) => this.setState({ desc: text })}
+            label={"Description"}
+            onChangeText={text => this.setState({ desc: text })}
             multiline
           />
         </View>
-      </KeyboardAwareScrollView>
+      </KeyboardAvoidingView>
     );
   }
 }

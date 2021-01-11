@@ -1,17 +1,15 @@
-// @flow
+/* eslint-disable no-undef */
 
-import stream from 'getstream';
-import faker from 'faker';
+const { connect, StreamApiError } = require('getstream');
+const faker = require('faker');
+const dotenv = require('dotenv');
 
-import type { UserSession, CloudClient } from '../types';
-
-import dotenv from 'dotenv';
 dotenv.config();
 
 async function main() {
-  let apiKey = process.env.STREAM_API_KEY;
-  let apiSecret = process.env.STREAM_API_SECRET;
-  let appId = process.env.STREAM_APP_ID;
+  const apiKey = process.env.STREAM_API_KEY;
+  const apiSecret = process.env.STREAM_API_SECRET;
+  const appId = process.env.STREAM_APP_ID;
   if (!apiKey) {
     console.error('STREAM_API_KEY should be set');
     return;
@@ -27,17 +25,21 @@ async function main() {
     return;
   }
 
-  function createUserSession(userId): UserSession {
-    return stream.connect(apiKey, stream.signing.JWTUserSessionToken(apiSecret, userId), appId);
+  const serverClient = connect(apiKey, apiSecret, appId);
+
+  function createUserClient(userId) {
+    return connect(apiKey, serverClient.createUserToken(userId), appId);
   }
 
-  let batman = createUserSession('batman');
-  let fluff = createUserSession('fluff');
-  let league = createUserSession('justiceleague');
-  let bowie = createUserSession('davidbowie');
+  const batman = createUserClient('batman');
+  const fluff = createUserClient('fluff');
+  const league = createUserClient('justiceleague');
+  const bowie = createUserClient('davidbowie');
 
+  console.log('================================================= \n');
   console.log('Add the following line to your .env file');
   console.log('STREAM_API_TOKEN=' + batman.userToken);
+  console.log('\n=================================================');
 
   await batman.currentUser.getOrCreate({
     name: 'Batman',
@@ -70,10 +72,10 @@ async function main() {
       'http://www.officialcharts.com/media/649820/david-bowie-1100.jpg?',
   });
 
-  let randomUsers = [];
-  let randomUsersPromises = [];
+  const randomUsers = [];
+  const randomUsersPromises = [];
   for (let i = 0; i < 30; i++) {
-    let session = createUserSession(`random-${i}`);
+    const session = createUserClient(`random-${i}`);
     randomUsers.push(session);
     randomUsersPromises.push(
       session.currentUser.getOrCreate({
@@ -85,12 +87,12 @@ async function main() {
   }
   await Promise.all(randomUsersPromises);
 
-  await batman.feed('user').follow('user', fluff.currentUser);
-  await batman.feed('user').follow('user', bowie.currentUser);
-  await batman.feed('user').follow('user', league.currentUser);
-  await league.feed('user').follow('user', batman.currentUser);
+  await batman.feed('timeline').follow('user', fluff.currentUser);
+  await batman.feed('timeline').follow('user', bowie.currentUser);
+  await batman.feed('timeline').follow('user', league.currentUser);
+  await league.feed('timeline').follow('user', batman.currentUser);
 
-  let batmanActivity = await batman.feed('user').addActivity({
+  const batmanActivity = await batman.feed('user').addActivity({
     foreign_id: 'batman-3',
     time: '2018-08-13T01:23:47',
 
@@ -102,7 +104,7 @@ async function main() {
       'Just beat the joker again. Will he ever give me a real challenge?',
   });
 
-  let fluffActivity = await fluff.feed('user').addActivity({
+  const fluffActivity = await fluff.feed('user').addActivity({
     foreign_id: 'fluff-3',
     time: '2018-07-19T13:23:47',
 
@@ -113,22 +115,23 @@ async function main() {
     content: 'Great podcast with @getstream and @feeds! Thanks guys!',
   });
 
-  let wonderWomenActivity = await league.feed('user').addActivity({
+  const wonderWomenActivity = await league.feed('user').addActivity({
     foreign_id: 'league-2',
     time: '2018-07-19T13:15:12',
 
     actor: league.currentUser,
     verb: 'post',
-    object: '-',
+    object:
+      'http://www.comingsoon.net/assets/uploads/2018/01/justice_league_2017___diana_hq___v2_by_duck_of_satan-db3kq6k.jpg',
 
-    content: 'Wonder Woman is going to be great!',
+    text: 'Wonder Woman is going to be great!',
     image:
       'http://www.comingsoon.net/assets/uploads/2018/01/justice_league_2017___diana_hq___v2_by_duck_of_satan-db3kq6k.jpg',
   });
   let podcast;
 
   try {
-    podcast = await bowie.collections.add('podcast','hello-world-podcast', {
+    podcast = await bowie.collections.add('podcast', 'hello-world-podcast', {
       title: 'Hello World',
       description: 'This is ground control for mayor Tom',
     });
@@ -136,7 +139,7 @@ async function main() {
     podcast = await bowie.collections.get('podcast', 'hello-world-podcast');
   }
 
-  let bowieActivity = await bowie.feed('user').addActivity({
+  const bowieActivity = await bowie.feed('user').addActivity({
     foreign_id: 'bowie-2',
     time: '2018-07-19T13:12:29',
 
@@ -147,10 +150,10 @@ async function main() {
     content: 'Great podcast with @getstream and @feeds! Thanks guys!',
   });
 
-  let activities = [];
+  const activities = [];
   for (let i = 1; i < 41; i++) {
     activities.push({
-      foreign_id: 'filler-i',
+      foreign_id: `filler-${i}`,
       time: '2018-07-10T01:23:' + (60 - i),
 
       actor: batman.currentUser,
@@ -160,9 +163,10 @@ async function main() {
       content: 'filler number ' + i,
     });
   }
+
   await batman.feed('timeline').addActivities(activities);
   await batman.feed('notification').addActivities(activities);
-  response = await batman.feed('timeline').get({
+  await batman.feed('timeline').get({
     withReactionCounts: true,
     withOwnReactions: true,
     withRecentReactions: true,
@@ -171,10 +175,15 @@ async function main() {
   await ignore409(() =>
     Promise.all(
       randomUsers.slice(5, 9).map((user, i) =>
-        user.reactions.add('heart', batmanActivity, {
-          id: `random-heart-batman-3-${i}`,
-          targetFeeds: [user.feed('notification', batman.currentUser.id)],
-        }),
+        user.reactions.add(
+          'heart',
+          batmanActivity.id,
+          {},
+          {
+            id: `random-heart-batman-3-${i}`,
+            targetFeeds: [user.feed('notification', batman.currentUser.id)],
+          },
+        ),
       ),
     ),
   );
@@ -182,13 +191,17 @@ async function main() {
   await ignore409(() =>
     Promise.all(
       randomUsers.slice(8, 17).map((user, i) =>
-        user.reactions.add('repost', batmanActivity, {
-          id: `random-repost-batman-3-${i}`,
-          data: {
+        user.reactions.add(
+          'repost',
+          batmanActivity,
+          {
             text: 'The Joker is so dumb, hahaha!!!!' + i,
           },
-          targetFeeds: [user.feed('notification', batman.currentUser.id)],
-        }),
+          {
+            id: `random-repost-batman-3-${i}`,
+            targetFeeds: [user.feed('notification', batman.currentUser.id)],
+          },
+        ),
       ),
     ),
   );
@@ -270,7 +283,9 @@ async function main() {
   );
 
   await ignore409(async () => {
-    await batman.reactions.add('heart', fluffActivity, { id: `batman-heart-fluff-2` });
+    await batman.reactions.add('heart', fluffActivity, {
+      id: `batman-heart-fluff-2`,
+    });
   });
 }
 main();
@@ -279,10 +294,7 @@ async function ignore409(asyncfn) {
   try {
     await asyncfn();
   } catch (e) {
-    if (
-      !(e instanceof stream.errors.StreamApiError) ||
-      e.response.statusCode != 409
-    ) {
+    if (!(e instanceof StreamApiError) || e.response.status !== 409) {
       throw e;
     }
   }
