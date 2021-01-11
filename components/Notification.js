@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import AttachedActivity from "./AttachedActivity";
-import { UserBar, humanizeTimestamp } from "expo-activity-feed";
+import { UserBar, withTranslationContext, humanizeTimestamp } from "expo-activity-feed";
 import { userOrDefault } from "../utils";
 
 import HeartIcon from "../images/icons/heart.png";
 import RepostIcon from "../images/icons/repost.png";
 
-const Notification = ({ activities }) => {
+const Notification = ({ activities, tDateTimeParser }) => {
   let headerText, headerSubtext, icon;
   const lastActivity = activities[0];
   const lastActor = userOrDefault(lastActivity.actor);
@@ -48,7 +48,7 @@ const Notification = ({ activities }) => {
         <AttachedActivity activity={lastActivity.object} />
         <View style={styles.footer}>
           <Text style={styles.footerTimestamp}>
-            {humanizeTimestamp(lastActivity.time)}
+            {humanizeTimestamp(lastActivity.time, tDateTimeParser)}
           </Text>
         </View>
       </View>
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Notification;
+export default withTranslationContext(Notification);

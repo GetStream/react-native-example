@@ -23,10 +23,13 @@ A mobile application built using React Native, [Stream.io](https://getstream.io/
 
 ### 1. Install dependencies
 
-```
+```sh
+# Clone the example app repo
 git clone https://github.com/GetStream/react-native-example
 cd react-native-example
-npm install
+
+# Install npm dependencies
+yarn;
 ```
 
 ### 2. Setup up your app
@@ -40,28 +43,20 @@ Get your Stream API credentials from the [user dashboard](https://getstream.io/d
 If you followed the [React Native tutorial](https://getstream.io/react-native-activity-feed/tutorial/), you already have a pre-configured app on your account that you can use for this project.
 
 ```
-cp .env.example .env
+mv .env.example .env
 ```
 
 Open the `.env` file in your favorite editor. And fill in the credentials.
 
-### 3. Get your userToken
+### 3. Get your userToken and setup demo data
 
 ```
-npm run init-data
+yarn run init-data
 ```
 
 Copy the line this script outputs and put it in your `.env` file.
 
-### 4. Setup the demo data
-
-Now we need to run the previous command again and this time it will preload your app with the sample data.
-
-```
-npm run init-data
-```
-
-### 5. Start your app
+### 4. Start your app
 
 ```
 npm start

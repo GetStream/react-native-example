@@ -1,11 +1,17 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject"
+    "build": "rm -rf lib && babel '*.js' components mock --out-dir  lib && cp -R ./images/ lib/ && flow-copy-source src lib",
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "eslint": "eslint '**/*.js' --max-warnings 0",
+    "prettier": "prettier --list-different '**/*.{js,ts}'",
+    "lint": "prettier --list-different '**/*.{js,ts}' && eslint '**/*.js' --max-warnings 0 && flow",
+    "lint-fix": "prettier --write '**/*.{js,ts}' && eslint --fix '**/*.js'",
+    "init-data": "node scripts/initData.js",
+    "test": "jest"
   },
   "dependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
@@ -14,7 +20,7 @@
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
     "expo": "~40.0.0",
-    "expo-activity-feed": "link:../react-native-activity-feed/expo-package",
+    "expo-activity-feed": "1.0.0-rc.1",
     "expo-image-picker": "~9.2.0",
     "expo-linear-gradient": "~8.4.0",
     "expo-permissions": "~10.0.0",
@@ -24,7 +30,6 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
-    "react-native-activity-feed-core": "link:../react-native-activity-feed",
     "react-native-dotenv": "^2.4.3",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-reanimated": "~1.13.0",
@@ -49,19 +54,6 @@
     "prettier": "^1.13.7",
     "react-native-scripts": "1.14.0",
     "react-test-renderer": "16.3.1"
-  },
-  "scripts": {
-    "build": "rm -rf lib && babel '*.js' components mock --out-dir  lib && cp -R ./images/ lib/ && flow-copy-source src lib",
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
-    "eslint": "eslint '**/*.js' --max-warnings 0",
-    "prettier": "prettier --list-different '**/*.{js,ts}'",
-    "lint": "prettier --list-different '**/*.{js,ts}' && eslint '**/*.js' --max-warnings 0 && flow",
-    "lint-fix": "prettier --write '**/*.{js,ts}' && eslint --fix '**/*.js'",
-    "init-data": "npx babel-node scripts/initData.js",
-    "test": "jest"
   },
   "private": true
 }
