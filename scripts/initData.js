@@ -21,7 +21,7 @@ async function main() {
   }
 
   if (!apiSecret) {
-    console.error('STREAM_SECRET should be set');
+    console.error('STREAM_API_SECRET should be set');
     return;
   }
 
