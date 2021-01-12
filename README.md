@@ -59,7 +59,7 @@ Copy the line this script outputs and put it in your `.env` file.
 ### 4. Start your app
 
 ```
-npm start
+expo start
 ```
 
 Follow the instructions from the terminal to preview the app on your phone or using an emulator.
