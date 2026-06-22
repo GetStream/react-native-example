@@ -39,7 +39,7 @@
     "react-native-web": "~0.13.12"
   },
   "devDependencies": {
-    "@babel/core": "~7.9.0",
+    "@babel/core": "~7.29.6",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.5",
     "babel-plugin-root-import": "^6.1.0",
