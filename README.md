@@ -1,3 +1,5 @@
+> **This repository is archived and no longer maintained.** For a current alternative, see [stream-feeds-react-native-tutorial](https://github.com/GetStream/stream-feeds-react-native-tutorial).
+
 # React Native Activity Feed Example
 
 A mobile application built using React Native, [Stream.io](https://getstream.io/) and [react-native-activity-feed](https://github.com/GetStream/react-native-activity-feed)
